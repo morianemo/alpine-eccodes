@@ -12,5 +12,3 @@ RUN tar -zxvf ${ECCODES}.tar.gz
 
 RUN apk add gfortran perl
 RUN cd ${ECCODES} && mkdir build && cd build && cmake .. && make -j2 && make install
-
-
