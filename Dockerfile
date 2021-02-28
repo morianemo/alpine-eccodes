@@ -1,6 +1,6 @@
 FROM alpine
 RUN apk update \
- && apk add --no-cache build-base cmake g++ linux-headers openssl python3-dev ca-certificates wget vim \
+ && apk add --no-cache build-base cmake g++ linux-headers openssl python3-dev ca-certificates wget vim gfortran perl \
  && update-ca-certificates
 
 WORKDIR /tmp
@@ -10,5 +10,9 @@ ENV HTTP=https://software.ecmwf.int/wiki/download/attachments/45757960 \
 RUN cd /tmp && wget --output-document=${ECCODES}.tar.gz ${HTTP}/${ECCODES}.tar.gz?api=v2
 RUN tar -zxvf ${ECCODES}.tar.gz
 
-RUN apk add gfortran perl
-RUN cd ${ECCODES} && mkdir build && cd build && cmake .. && make -j2 && make install
+RUN cd ${ECCODES} && mkdir build && cd build && cmake .. && make -j$(grep processor /proc/cpuinfo | wc -l) && make install
+# RUN apk add git netcdf jpeg
+# RUN apk del cmake g++ linux-headers build-base
+# RUN rm -rf /tmp${ECCODES}
+
+
