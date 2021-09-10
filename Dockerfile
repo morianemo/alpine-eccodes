@@ -6,8 +6,7 @@ RUN apk update \
 WORKDIR /tmp
 
 ENV HTTP=https://software.ecmwf.int/wiki/download/attachments/45757960 \
-  ECCODES=eccodes-2.22.1-Source
-#  ECCODES=eccodes-2.23.0-Source
+  ECCODES=eccodes-2.23.0-Source
 RUN cd /tmp && wget --output-document=${ECCODES}.tar.gz ${HTTP}/${ECCODES}.tar.gz?api=v2
 RUN tar -zxvf ${ECCODES}.tar.gz
 
