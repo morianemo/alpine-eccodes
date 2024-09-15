@@ -4,8 +4,9 @@ RUN apk update \
  && update-ca-certificates
 
 WORKDIR /tmp
-ENV HTTP=https://confluence.ecmwf.int/download/attachments/45757960 \
-  ECCODES=eccodes-2.31.0-Source
+ENV HTTP=https://confluence.ecmwf.int/download/attachments/45757960 
+# /eccodes-2.37.0-Source.tar.gz
+ENV ECCODES=eccodes-2.37.0-Source
 RUN cd /tmp && wget --output-document=${ECCODES}.tar.gz ${HTTP}/${ECCODES}.tar.gz?api=v2
 RUN tar -zxvf ${ECCODES}.tar.gz
 
