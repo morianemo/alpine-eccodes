@@ -6,7 +6,7 @@ RUN apk update \
 WORKDIR /tmp
 ENV HTTP=https://confluence.ecmwf.int/download/attachments/45757960 
 # /eccodes-2.40.0-Source.tar.gz
-ENV ECCODES=eccodes-2.40.0-Source
+ENV ECCODES=eccodes-2.42.0-Source
 RUN cd /tmp && wget --output-document=${ECCODES}.tar.gz ${HTTP}/${ECCODES}.tar.gz?api=v2
 RUN tar -zxvf ${ECCODES}.tar.gz
 
